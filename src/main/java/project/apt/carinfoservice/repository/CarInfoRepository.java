@@ -13,6 +13,7 @@ public interface CarInfoRepository extends JpaRepository<CarInfo, Integer> {
     List<CarInfo> findCarInfosByEuroNorm(String euroNorm);
     List<CarInfo> findCarInfosByPortier(CarInfo.portierOptie portier);
     List<CarInfo> findCarInfosByType(String type);
+    List<CarInfo> findCarInfosByMerkAndType(String merk, String type);
 
     CarInfo findCarInfoByLicensePlate(String licensePlate);
 

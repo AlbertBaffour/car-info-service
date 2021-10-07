@@ -25,8 +25,7 @@ public class CarInfo {
 
     public CarInfo() {}
 
-    public CarInfo(Integer id, String merk, String type, String licensePlate, String euroNorm, portierOptie portier) {
-        this.id = id;
+    public CarInfo(String merk, String type, String licensePlate, String euroNorm, portierOptie portier) {
         this.merk = merk;
         this.type = type;
         this.licensePlate = licensePlate;
