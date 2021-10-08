@@ -21,7 +21,7 @@ public class CarInfoController {
             CarInfo car1 = new CarInfo("Volkswagen", "Golf 5", "1VQW871", "Euro 4", CarInfo.portierOptie.VIERDEURS);
             carInfoRepository.save(car1);
 
-            CarInfo car2 = new CarInfo("Volkswagen", "Golf 5", "1VQW871", "Euro 4", CarInfo.portierOptie.VIERDEURS);
+            CarInfo car2 = new CarInfo("Audi", "R8", "1VQW871", "Euro 1", CarInfo.portierOptie.VIERDEURS);
             carInfoRepository.save(car2);
         }
 
