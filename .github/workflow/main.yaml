@@ -1,0 +1,46 @@
+name: Building, Testing, Delivering docker container
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: (Java 11) Build, test and deliver docker container
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: JDK 11 Setup
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Shutdown default Ubuntu MySQL
+        run: sudo service mysql stop
+
+      - name: Start MariaDB for integration tests
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql version: '8.0'
+          mysql database: 'car_info'
+          mysql root password: ${{ secrets.MARIA_DB_PASSWORD }}
+          mysql user : ${{ secrets.MARIA_DB_HOST}}
+          mysql password: ${{ secrets.RootPassword }}
+
+      - name: Build, test and packaging of project
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mvn -B verify
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker build
+        run: docker build -t ${{ secrets.DOCKER_USER }}/carinfo-service:latest .
+
+      - name: Upload container to Docker hub
+        run: docker push ${{ secrets.DOCKER_USER }}/carinfo-service:latest
+
