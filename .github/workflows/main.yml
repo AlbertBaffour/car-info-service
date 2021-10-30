@@ -25,7 +25,7 @@ jobs:
           mysql database: 'car_info'
           mysql root password: ${{ secrets.MARIA_DB_PASSWORD }}
           mysql user : ${{ secrets.MARIA_DB_HOST}}
-          mysql password: ${{ secrets.RootPassword }}
+          mysql password: ${{ secrets.ROOT_PASSWORD }}
 
       - name: Build, test and packaging of project
         env:
