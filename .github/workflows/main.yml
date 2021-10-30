@@ -41,4 +41,3 @@ jobs:
 
       - name: Upload container to Docker hub
         run: docker push ${{ secrets.DOCKER_USER }}/carinfo-service:latest
-
