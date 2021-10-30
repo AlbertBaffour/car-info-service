@@ -21,6 +21,8 @@ jobs:
       - name: Start MariaDB for integration tests
         uses: mirromutth/mysql-action@v1.1
         with:
+          character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
+          collation server: 'utf8_general_ci'
           mysql version: '8.0'
           mysql database: 'car_info'
           mysql root password: ${{ secrets.ROOT_PASSWORD }}
