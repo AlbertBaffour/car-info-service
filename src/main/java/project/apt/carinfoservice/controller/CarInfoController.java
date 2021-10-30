@@ -64,15 +64,15 @@ public class CarInfoController {
         return carInfoRepository.findCarInfosByMerkAndType(merk, type);
     }
 
-    @PostMapping("/car")
+    @PostMapping("/cars")
     public CarInfo addCar(@RequestBody CarInfo carInfo) {
         carInfoRepository.save(carInfo);
         return carInfo;
     }
 
-    @PutMapping("/car/{licensePlate}")
-    public CarInfo updateCarInfo(@PathVariable String licensePlate, @RequestBody CarInfo carInfo) {
-        CarInfo retrievedCarInfo = carInfoRepository.findCarInfoByLicensePlate(licensePlate);
+    @PutMapping("/cars")
+    public CarInfo updateCarInfo(@RequestBody CarInfo carInfo) {
+        CarInfo retrievedCarInfo = carInfoRepository.findCarInfoByLicensePlate(carInfo.getLicensePlate());
         retrievedCarInfo.setLicensePlate(carInfo.getLicensePlate());
         retrievedCarInfo.setEuroNorm(carInfo.getEuroNorm());
         retrievedCarInfo.setMerk(carInfo.getMerk());
