@@ -24,7 +24,7 @@ jobs:
           character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
           collation server: 'utf8_general_ci'
           mysql version: '8.0'
-          mysql database: 'car_info'
+          mysql database: 'springbootdb'
           mysql root password: 'root'
           mysql user : 'developer'
           mysql password: ${{ secrets.MARIA_DB_PASSWORD }}
