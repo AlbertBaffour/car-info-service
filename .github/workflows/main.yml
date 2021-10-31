@@ -19,10 +19,12 @@ jobs:
         run: sudo service mysql stop
 
       - name: Start MariaDB for integration tests
-        uses: getong/mariadb-action@v1.1
+        uses: mirromutth/mysql-action@v1.1
         with:
           mysql database: 'springbootdb'
           mysql root password: ${{secrets.ROOT_PASSWORD}}
+          mysql user : 'localhost'
+          mysql password: ${{ secrets.MARIA_DB_PASSWORD }}
 
       - name: Build, test and packaging of project
         env:
