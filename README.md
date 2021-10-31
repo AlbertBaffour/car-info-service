@@ -1,8 +1,8 @@
 # car-info-service
 
 
-docker account : inspectionedgehun
-docker ww : inspectionedgehun
+dockerhub account : inspectionedgehun
+dockerhub ww : inspectionedgehun
 
 
 mariadb user:localhost
