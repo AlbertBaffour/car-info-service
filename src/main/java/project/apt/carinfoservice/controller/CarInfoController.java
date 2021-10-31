@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.apt.carinfoservice.model.CarInfo;
+import project.apt.carinfoservice.model.CarInfoDTO;
 import project.apt.carinfoservice.repository.CarInfoRepository;
 
 import javax.annotation.PostConstruct;
@@ -26,7 +27,7 @@ public class CarInfoController {
         }
 
         //DB TEST
-        System.out.println("Cars: " + carInfoRepository.findAll().size());
+        //System.out.println("Cars: " + carInfoRepository.findAll().size());
     }
 
     @GetMapping("/cars")
@@ -65,13 +66,14 @@ public class CarInfoController {
     }
 
     @PostMapping("/cars")
-    public CarInfo addCar(@RequestBody CarInfo carInfo) {
+    public CarInfo addCar(@RequestBody CarInfoDTO carInfoDTO) {
+        CarInfo carInfo = new CarInfo(carInfoDTO.getMerk(),carInfoDTO.getType(),carInfoDTO.getLicensePlate(),carInfoDTO.getEuroNorm(),carInfoDTO.getPortier());
         carInfoRepository.save(carInfo);
         return carInfo;
     }
 
     @PutMapping("/cars")
-    public CarInfo updateCarInfo(@RequestBody CarInfo carInfo) {
+    public CarInfo updateCarInfo(@RequestBody CarInfoDTO carInfo) {
         CarInfo retrievedCarInfo = carInfoRepository.findCarInfoByLicensePlate(carInfo.getLicensePlate());
         retrievedCarInfo.setLicensePlate(carInfo.getLicensePlate());
         retrievedCarInfo.setEuroNorm(carInfo.getEuroNorm());
@@ -83,7 +85,7 @@ public class CarInfoController {
         return retrievedCarInfo;
     }
 
-    @DeleteMapping("/cars/{licensePlate}")
+    @DeleteMapping("/cars/licensePlate/{licensePlate}")
     public ResponseEntity deleteCarInfo(@PathVariable String licensePlate) {
         CarInfo carInfo = carInfoRepository.findCarInfoByLicensePlate(licensePlate);
         if (carInfo != null) {
