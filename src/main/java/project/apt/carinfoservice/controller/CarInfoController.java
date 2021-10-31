@@ -18,10 +18,10 @@ public class CarInfoController {
     @PostConstruct
     public void fillDB() {
         if (carInfoRepository.count() == 0) {
-            CarInfo car1 = new CarInfo("Volkswagen", "Golf 5", "1VQW871", "Euro 4", CarInfo.portierOptie.VIERDEURS);
+            CarInfo car1 = new CarInfo("Volkswagen", "Golf 5", "1VQW871", "4", CarInfo.portierOptie.VIERDEURS);
             carInfoRepository.save(car1);
 
-            CarInfo car2 = new CarInfo("Audi", "R8", "1VCJ543", "Euro 1", CarInfo.portierOptie.VIERDEURS);
+            CarInfo car2 = new CarInfo("Audi", "R8", "1VCJ543", "5", CarInfo.portierOptie.VIERDEURS);
             carInfoRepository.save(car2);
         }
 
@@ -34,32 +34,32 @@ public class CarInfoController {
         return carInfoRepository.findAll();
     }
 
-    @GetMapping("/car/{licensePlate}")
+    @GetMapping("/cars/licensePlate/{licensePlate}")
     public CarInfo findCarByLicensePlate(@PathVariable String licensePlate) {
         return carInfoRepository.findCarInfoByLicensePlate(licensePlate);
     }
 
-    @GetMapping("/cars/{euroNorm}")
+    @GetMapping("/cars/euroNorm/{euroNorm}")
     public List<CarInfo> getCarsByEuroNorm(@PathVariable String euroNorm) {
         return carInfoRepository.findCarInfosByEuroNorm(euroNorm);
     }
 
-    @GetMapping("/cars/{merk}")
+    @GetMapping("/cars/merk/{merk}")
     public List<CarInfo> getCarsByMerk(@PathVariable String merk) {
         return carInfoRepository.findCarInfosByMerk(merk);
     }
 
-    @GetMapping("/cars/{type}")
+    @GetMapping("/cars/type/{type}")
     public List<CarInfo> getCarsByType(@PathVariable String type) {
         return carInfoRepository.findCarInfosByType(type);
     }
 
-    @GetMapping("/cars/{portier}")
+    @GetMapping("/cars/portier/{portier}")
     public List<CarInfo> getCarsByPortier(@PathVariable CarInfo.portierOptie portier) {
         return carInfoRepository.findCarInfosByPortier(portier);
     }
 
-    @GetMapping("/cars/{merk}/{type}")
+    @GetMapping("/cars/merk/{merk}/type/{type}")
     public List<CarInfo> getCarsByMerkAndType(@PathVariable String merk, @PathVariable String type) {
         return carInfoRepository.findCarInfosByMerkAndType(merk, type);
     }
@@ -83,7 +83,7 @@ public class CarInfoController {
         return retrievedCarInfo;
     }
 
-    @DeleteMapping("/car/{licensePlate}")
+    @DeleteMapping("/cars/{licensePlate}")
     public ResponseEntity deleteCarInfo(@PathVariable String licensePlate) {
         CarInfo carInfo = carInfoRepository.findCarInfoByLicensePlate(licensePlate);
         if (carInfo != null) {
