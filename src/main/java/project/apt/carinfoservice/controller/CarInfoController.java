@@ -40,29 +40,14 @@ public class CarInfoController {
         return carInfoRepository.findCarInfoByLicensePlate(licensePlate);
     }
 
-    @GetMapping("/cars/euroNorm/{euroNorm}")
-    public List<CarInfo> getCarsByEuroNorm(@PathVariable String euroNorm) {
-        return carInfoRepository.findCarInfosByEuroNorm(euroNorm);
-    }
-
     @GetMapping("/cars/merk/{merk}")
     public List<CarInfo> getCarsByMerk(@PathVariable String merk) {
         return carInfoRepository.findCarInfosByMerk(merk);
     }
 
-    @GetMapping("/cars/type/{type}")
-    public List<CarInfo> getCarsByType(@PathVariable String type) {
-        return carInfoRepository.findCarInfosByType(type);
-    }
-
     @GetMapping("/cars/portier/{portier}")
     public List<CarInfo> getCarsByPortier(@PathVariable CarInfo.portierOptie portier) {
         return carInfoRepository.findCarInfosByPortier(portier);
-    }
-
-    @GetMapping("/cars/merk/{merk}/type/{type}")
-    public List<CarInfo> getCarsByMerkAndType(@PathVariable String merk, @PathVariable String type) {
-        return carInfoRepository.findCarInfosByMerkAndType(merk, type);
     }
 
     @PostMapping("/cars")

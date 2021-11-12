@@ -76,28 +76,7 @@ class CarInfoControllerUnitTests {
                 .andExpect(jsonPath("$.licensePlate",is("1VQW871")))
                 .andExpect(jsonPath("$.type",is("a3")));
     }
-    @Test
-     void givenCarInfo_whenGetCarInfoByEuroNorm_thenReturnJsonCarInfo() throws Exception {
-        CarInfo carInfo1 = new CarInfo("audi","a3","1VQW871","5", TWEEDEURS);
-        CarInfo carInfo2 = new CarInfo("vw","golf5","1VCJ854","5",VIERDEURS);
 
-        List<CarInfo> carInfoList = new ArrayList<>();
-        carInfoList.add(carInfo1);
-        carInfoList.add(carInfo2);
-
-        given(carInfoRepository.findCarInfosByEuroNorm("5")).willReturn(carInfoList);
-
-        mockMvc.perform(get("/cars/euroNorm/{euroNorm}", "5"))
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].type",is("a3")))
-                .andExpect(jsonPath("$[0].licensePlate",is("1VQW871")))
-                .andExpect(jsonPath("$[0].merk",is("audi")))
-                .andExpect(jsonPath("$[1].type",is("golf5")))
-                .andExpect(jsonPath("$[1].licensePlate",is("1VCJ854")))
-                .andExpect(jsonPath("$[1].merk",is("vw")));
-    }
     @Test
      void givenCarInfo_whenGetCarInfoByMerk_thenReturnJsonCarInfo() throws Exception {
         CarInfo carInfo1 = new CarInfo("audi","a3","1VQW871","5", TWEEDEURS);
@@ -108,24 +87,6 @@ class CarInfoControllerUnitTests {
         given(carInfoRepository.findCarInfosByMerk("audi")).willReturn(carInfoList);
 
         mockMvc.perform(get("/cars/merk/{merk}", "audi"))
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].type",is("a3")))
-                .andExpect(jsonPath("$[0].licensePlate",is("1VQW871")))
-                .andExpect(jsonPath("$[0].merk",is("audi")));
-    }
-
-    @Test
-     void givenCarInfo_whenGetCarInfoByType_thenReturnJsonCarInfo() throws Exception {
-        CarInfo carInfo1 = new CarInfo("audi","a3","1VQW871","5", TWEEDEURS);
-
-        List<CarInfo> carInfoList = new ArrayList<>();
-        carInfoList.add(carInfo1);;
-
-        given(carInfoRepository.findCarInfosByType("a3")).willReturn(carInfoList);
-
-        mockMvc.perform(get("/cars/type/{type}", "a3"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
@@ -152,23 +113,6 @@ class CarInfoControllerUnitTests {
                 .andExpect(jsonPath("$[0].portier",is("TWEEDEURS")));
     }
 
-    @Test
-     void givenCarInfo_whenGetCarInfoByMerkEnType_thenReturnJsonCarInfo() throws Exception {
-        CarInfo carInfo1 = new CarInfo("audi","a3","1VQW871","5", TWEEDEURS);
-
-        List<CarInfo> carInfoList = new ArrayList<>();
-        carInfoList.add(carInfo1);;
-
-        given(carInfoRepository.findCarInfosByMerkAndType("audi", "a3")).willReturn(carInfoList);
-
-        mockMvc.perform(get("/cars/merk/{merk}/type/{type}", "audi","a3"))
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].merk",is("audi")))
-                .andExpect(jsonPath("$[0].type",is("a3")))
-                .andExpect(jsonPath("$[0].licensePlate",is("1VQW871")));
-    }
     @Test
      void whenPostCarInfo_thenReturnJsonCarInfo() throws Exception{
         CarInfo carInfo = new CarInfo("vw","golf5","1VCJ854","5",VIERDEURS);

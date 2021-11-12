@@ -12,18 +12,6 @@ public class CarInfoDTO {
 
     public CarInfoDTO() {}
 
-    public CarInfoDTO(String merk, String type, String licensePlate, String euroNorm, CarInfo.portierOptie portier) {
-        this.merk = merk;
-        this.type = type;
-        this.licensePlate = licensePlate;
-        this.euroNorm = euroNorm;
-        this.portier = portier;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
