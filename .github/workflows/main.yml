@@ -1,6 +1,6 @@
 name: Building, Testing, Delivering docker container
 
-on: push
+on:
 
 jobs:
   build:
