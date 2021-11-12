@@ -70,11 +70,11 @@ spec:
               memory: "200Mi"
           env:                    # Environment variables supplied to the Pod
             - name: MYSQL_DB_USERNAME
-              value: "root"
+              value: "localhost"
             - name: MYSQL_DB_PASSWORD
-              value: "abc123"
+              value: "secret"
             - name: MYSQL_DB_HOST
-              value: "car-info-service-mariadb"
+              value: "springbootdb"
 ---
 apiVersion: v1                      # API version
 kind: Service                       # Type of the kubernetes resource
