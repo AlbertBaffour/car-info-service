@@ -59,7 +59,11 @@ spec:
     spec:                     # Spec for the containers that will be run in the Pods
       containers:
         - name: car-info-service-server
+<<<<<<< HEAD
           image: inspectionedgehub/car-info-service
+=======
+          image: ${{ secrets.DOCKER_USER }}/car-info-service
+>>>>>>> afc12931646ad8a0782888ff6f8322112954ebfb
           imagePullPolicy: Always
           ports:
             - name: http
