@@ -72,7 +72,7 @@ spec:
             - name: MYSQL_DB_USERNAME
               value: "localhost"
             - name: MYSQL_DB_PASSWORD
-              value: "abc123"
+              value: "secret"
             - name: MYSQL_DB_HOST
               value: "car-info-service-mariadb"
 ---
