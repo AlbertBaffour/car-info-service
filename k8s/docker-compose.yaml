@@ -36,7 +36,7 @@ spec:
           name: mariadb
           env:                        # Environment variables passed to the container
             - name: MYSQL_ROOT_PASSWORD
-              value: "abc123"           # Read environment variables from kubernetes secrets
+              value: "admin"        # Read environment variables from kubernetes secrets
           ports:
             - containerPort: 3306       # The port that the container exposes
               name: mariadb
@@ -72,9 +72,9 @@ spec:
             - name: MYSQL_DB_USERNAME
               value: "root"
             - name: MYSQL_DB_PASSWORD
-              value: "abc123"
+              value: "admin"
             - name: MYSQL_DB_HOST
-              value: "car-info-service-mariadb"
+              value: "localhost"
 ---
 apiVersion: v1                      # API version
 kind: Service                       # Type of the kubernetes resource
