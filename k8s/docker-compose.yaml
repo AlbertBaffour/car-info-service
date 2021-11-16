@@ -70,7 +70,7 @@ spec:
               memory: "200Mi"
           env:                    # Environment variables supplied to the Pod
             - name: MYSQL_DB_USERNAME
-              value: "localhost"
+              value: "root"
             - name: MYSQL_DB_PASSWORD
               value: "admin"
             - name: MYSQL_DB_HOST

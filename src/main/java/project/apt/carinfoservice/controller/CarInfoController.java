@@ -35,7 +35,7 @@ public class CarInfoController {
         return carInfoRepository.findAll();
     }
 
-    @GetMapping("/cars/licensePlate/{licensePlate}")
+    @GetMapping("/cars/license_plate/{licensePlate}")
     public CarInfo findCarByLicensePlate(@PathVariable String licensePlate) {
         return carInfoRepository.findCarInfoByLicensePlate(licensePlate);
     }
@@ -59,18 +59,18 @@ public class CarInfoController {
 
     @PutMapping("/cars")
     public CarInfo updateCarInfo(@RequestBody CarInfoDTO carInfo) {
-        CarInfo retrievedCarInfo = carInfoRepository.findCarInfoByLicensePlate(carInfo.getLicensePlate());
-        retrievedCarInfo.setLicensePlate(carInfo.getLicensePlate());
-        retrievedCarInfo.setEuroNorm(carInfo.getEuroNorm());
-        retrievedCarInfo.setMerk(carInfo.getMerk());
-        retrievedCarInfo.setType(carInfo.getType());
-        retrievedCarInfo.setPortier(carInfo.getPortier());
-        carInfoRepository.save(retrievedCarInfo);
+            CarInfo retrievedCarInfo = carInfoRepository.findCarInfoByLicensePlate(carInfo.getLicensePlate());
+            retrievedCarInfo.setLicensePlate(carInfo.getLicensePlate());
+            retrievedCarInfo.setEuroNorm(carInfo.getEuroNorm());
+            retrievedCarInfo.setMerk(carInfo.getMerk());
+            retrievedCarInfo.setType(carInfo.getType());
+            retrievedCarInfo.setPortier(carInfo.getPortier());
+            carInfoRepository.save(retrievedCarInfo);
 
-        return retrievedCarInfo;
+            return retrievedCarInfo;
     }
 
-    @DeleteMapping("/cars/licensePlate/{licensePlate}")
+    @DeleteMapping("/cars/license_plate/{licensePlate}")
     public ResponseEntity deleteCarInfo(@PathVariable String licensePlate) {
         CarInfo carInfo = carInfoRepository.findCarInfoByLicensePlate(licensePlate);
         if (carInfo != null) {

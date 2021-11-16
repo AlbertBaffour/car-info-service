@@ -68,7 +68,7 @@ class CarInfoControllerIntegrationTests {
     @Test
      void givenCarInfo_whenGetCarInfoByLicensePlate_thenReturnJsonCarInfo() throws Exception {
 
-        mockMvc.perform(get("/cars/licensePlate/{licensePlate}","1VQW871"))
+        mockMvc.perform(get("/cars/license_plate/{licensePlate}","1VQW871"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.merk",is("audi")))
@@ -136,7 +136,7 @@ class CarInfoControllerIntegrationTests {
     @Test
      void givenCarInfo_whenDeleteCarInfo_thenStatusOk() throws Exception{
 
-        mockMvc.perform(delete("/cars/licensePlate/{licensePlate}","1VQW871")
+        mockMvc.perform(delete("/cars/license_plate/{licensePlate}","1VQW871")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -144,7 +144,7 @@ class CarInfoControllerIntegrationTests {
     @Test
      void givenNoCarInfo_whenDeleteCarInfo_thenStatusNotFound() throws Exception{
 
-        mockMvc.perform(delete("/cars/licensePlate/{licensePlate}","1KBC871")
+        mockMvc.perform(delete("/cars/license_plate/{licensePlate}","1KBC871")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }

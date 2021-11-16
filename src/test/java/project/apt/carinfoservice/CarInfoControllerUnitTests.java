@@ -69,7 +69,7 @@ class CarInfoControllerUnitTests {
 
         given(carInfoRepository.findCarInfoByLicensePlate("1VQW871")).willReturn(carInfo);
 
-        mockMvc.perform(get("/cars/licensePlate/{licensePlate}","1VQW871"))
+        mockMvc.perform(get("/cars/license_plate/{licensePlate}","1VQW871"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.merk",is("audi")))
@@ -151,7 +151,7 @@ class CarInfoControllerUnitTests {
 
         given(carInfoRepository.findCarInfoByLicensePlate("1VQW871")).willReturn(carInfoToBeDeleted);
 
-        mockMvc.perform(delete("/cars/licensePlate/{licensePlate}","1VQW871")
+        mockMvc.perform(delete("/cars/license_plate/{licensePlate}","1VQW871")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -160,7 +160,7 @@ class CarInfoControllerUnitTests {
      void givenNoCarInfo_whenDeleteCarInfo_thenStatusNotFound() throws Exception{
         given(carInfoRepository.findCarInfoByLicensePlate("1VQW871")).willReturn(null);
 
-        mockMvc.perform(delete("/cars/licensePlate/{licensePlate}","1VQW871")
+        mockMvc.perform(delete("/cars/license_plate/{licensePlate}","1VQW871")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
