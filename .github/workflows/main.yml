@@ -23,7 +23,7 @@ jobs:
         with:
           mysql database: 'springbootdb'
           mysql root password: ${{secrets.ROOT_PASSWORD}}
-          mysql user : 'localhost'
+          mysql user : 'root'
           mysql password: ${{ secrets.MARIA_DB_PASSWORD }}
 
       - name: Build, test and packaging of project
