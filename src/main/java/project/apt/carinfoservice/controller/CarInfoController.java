@@ -10,6 +10,7 @@ import project.apt.carinfoservice.repository.CarInfoRepository;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class CarInfoController {
 
@@ -49,7 +50,7 @@ public class CarInfoController {
     public List<CarInfo> getCarsByPortier(@PathVariable CarInfo.portierOptie portier) {
         return carInfoRepository.findCarInfosByPortier(portier);
     }
-
+	@CrossOrigin(origins = "*")
     @PostMapping("/cars")
     public CarInfo addCar(@RequestBody CarInfoDTO carInfoDTO) {
         CarInfo carInfo = new CarInfo(carInfoDTO.getMerk(),carInfoDTO.getType(),carInfoDTO.getLicensePlate(),carInfoDTO.getEuroNorm(),carInfoDTO.getPortier());
